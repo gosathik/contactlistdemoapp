@@ -1,0 +1,16 @@
+version: "3"
+services:
+  contact_list_db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+  contact_list_app:
+    image: contactlist:dev
+    ports:
+      - "1000:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dockercompose
+    depends_on:
+      - contact_list_db
